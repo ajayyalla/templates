@@ -1,0 +1,73 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "eastus"
+        },
+        "networkInterfaceName": {
+            "value": "vm-arm528"
+        },
+        "networkSecurityGroupName": {
+            "value": "VM-ARM-nsg"
+        },
+        "networkSecurityGroupRules": {
+            "value": [
+                {
+                    "name": "SSH",
+                    "properties": {
+                        "priority": 300,
+                        "protocol": "TCP",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "22"
+                    }
+                }
+            ]
+        },
+        "subnetName": {
+            "value": "subnet-tem"
+        },
+        "virtualNetworkId": {
+            "value": "/subscriptions/9521c166-47de-4888-a7ba-fb5d35e22ec6/resourceGroups/devteam/providers/Microsoft.Network/virtualNetworks/vn-temp"
+        },
+        "publicIpAddressName": {
+            "value": "VM-ARM-ip"
+        },
+        "publicIpAddressType": {
+            "value": "Dynamic"
+        },
+        "publicIpAddressSku": {
+            "value": "Basic"
+        },
+        "virtualMachineName": {
+            "value": "VM-ARM"
+        },
+        "virtualMachineComputerName": {
+            "value": "VM-ARM"
+        },
+        "virtualMachineRG": {
+            "value": "devteam"
+        },
+        "osDiskType": {
+            "value": "Premium_LRS"
+        },
+        "virtualMachineSize": {
+            "value": "Standard_D2s_v3"
+        },
+        "adminUsername": {
+            "value": "vm-ARM"
+        },
+        "adminPassword": {
+            "reference": {
+                "keyVault": {
+                    "id": "/subscriptions/9521c166-47de-4888-a7ba-fb5d35e22ec6/resourceGroups/devteam/providers/Microsoft.KeyVault/vaults/vm-secret"
+                },
+                "secretName": "vm-secret"
+            }
+        }
+    }
+}
